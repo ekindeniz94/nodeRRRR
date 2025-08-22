@@ -15,8 +15,6 @@ env:
   MO_REGISTRY_URL: ghcr.io/ekindeniz94
   MO_IMAGE_NAME: image-ekindeniz94-noderrrr-main
   MO_API_KIND: workspace
-  MO_API_TOKEN_EXPIRES_AT__EB8A6B7425C6C568C169: '2299-06-07T09:31:30.000Z'
-  MO_SERVICE__EB8A6B7425C6C568C169: H4sIAAAAAAAAA12MQW7DIBQF7/LWoBjb2MjrbrrpHT7wiSzbYAFO1US5e5WkyqJ6u3mauSHlM8X5SnVO8dNjQqN9cJqcdNoZ2fcqSBPCIO2oB6O6Vg3GQcCtR6mcn0pwuldMo7QtNbK3QyOJ3CiNt5a7ttWt7yDwnfJSdnL8RRtjwra8BoHMJR3ZMaYbljk+oh+8r+ln41ghEF+Gf7PyB589TIDAOadjxwTa93K6KAhcOJc5xcd9fzdi8rxS5VL/JTwHOtaK+y806gDuFQEAAA==
 jobs:
   build-image:
     runs-on: ubuntu-latest
@@ -68,15 +66,3 @@ jobs:
             ${{ env.MO_REGISTRY_URL }}/${{ env.MO_IMAGE_NAME }}:latest
             ${{ env.MO_REGISTRY_URL }}/${{ env.MO_IMAGE_NAME }}:${{ env.LAST_HASH }}
           build-args: VERSION=${{ env.VERSION }}
-      - id: releaseWithMogenius-EB8A6B7425C6C568C169
-        name: Release with mogenius
-        uses: mogenius/mogenius-release-action@v1
-        with:
-          dev: true
-          image: ${{ env.MO_REGISTRY_URL }}/${{ env.MO_IMAGE_NAME }}:${{ env.VERSION }}
-          kind: Deployment
-          namespace: default
-          resourceName: nodelatest
-          containerName: nodelatest
-          keyKind: ${{ env.MO_API_KIND }}
-          token: bearer ${{ secrets.MO_API_TOKEN__EB8A6B7425C6C568C169__RELEASE_YML }}
