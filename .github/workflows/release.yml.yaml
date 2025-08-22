@@ -23,7 +23,7 @@ jobs:
       packages: write
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
@@ -55,7 +55,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Build and push multi-arch image
         id: buildAndPushImage
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ env.MO_DOCKERCONTEXT }}
           file: ${{ env.MO_DOCKERFILE }}
